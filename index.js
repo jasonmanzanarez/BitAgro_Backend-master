@@ -8,3 +8,4 @@ const eraseDatabaseOnSync = false;
 db.sync({ force: eraseDatabaseOnSync }).then(async () => {
   server.listen(PORT, () => console.log(`server is running at ${PORT}`));
 });
+//*
