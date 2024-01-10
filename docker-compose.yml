@@ -1,0 +1,46 @@
+version: '3.3'
+services:
+  postgres:
+    image: 'postgres:11.5'
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=bitagro
+      - POSTGRES_DB=bitagrodb
+      - POSTGRES_PASSWORD=bitagro123
+      - PGDATA=/var/lib/postgresql/data/pgdata
+  api:
+    depends_on:
+      - postgres
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
+    restart: unless-stopped
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/app/node_app
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+      - notused:/app/node_modules
+    environment:
+      - TZ=America/Mazatlan
+      - LC_CTYPE=en_US.UTF-8
+      - LC_ALL=en_US.UTF-8
+      - PGUSER=bitagro
+      - PGHOST=postgres
+      - PGDATABASE=bitagrodb
+      - PGPASSWORD=bitagro123
+      - PGPORT=5432
+      - SEED=seededesarrollo
+      - CADUCIDAD_TOKEN=24h
+      - EMAILUSER=hola.bitagro@gmail.com
+      - PASSWORDEMAILUSER=bitagro123
+      - EMAILHOST=smtp.gmail.com
+      - EMAILPORT=587
+      - EMAILSECURE=false
+      - HOSTFRONT=http://localhost:3000
+      - HOSTBACK=http://localhost:5000
+
+volumes:
+  notused:

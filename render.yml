@@ -1,0 +1,4 @@
+services:
+  - name: mi-aplicacion
+    env: node
+    startCommand: npm start
