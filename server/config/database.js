@@ -4,9 +4,12 @@ const keys = require('./keys');
 const db = new Sequelize(keys.pgDatabase, keys.pgUser, keys.pgPassword, {
   host: keys.pgHost,
   dialect: 'postgres',
-  ssl: {
-    rejectUnauthorized: false
-  }
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
 });
 
 module.exports = db;
