@@ -3,7 +3,10 @@ const keys = require('./keys');
 
 const db = new Sequelize(keys.pgDatabase, keys.pgUser, keys.pgPassword, {
   host: keys.pgHost,
-  dialect: 'postgres'
+  dialect: 'postgres',
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 module.exports = db;
