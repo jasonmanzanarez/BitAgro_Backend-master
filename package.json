@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon -L --exec babel-node index.js",
     "seed": "babel-node -- server/seeds/index.js",
-    "start": "babel-node -- index.js",
+    "start": "node index.js",
     "eslint": "eslint .",
     "test": "NODE_ENV=test jest --watch",
     "coverage": "jest --coverage"
